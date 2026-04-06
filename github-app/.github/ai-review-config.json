@@ -1,0 +1,47 @@
+{
+  "strictness": "medium",
+  "includeSecurity": true,
+  "includePerformance": true,
+  "includeBestPractices": true,
+  "models": {
+    "claude": { "enabled": true, "maxTokens": 4000 },
+    "openai": { "enabled": true, "maxTokens": 4000 },
+    "gemini": { "enabled": true, "maxTokens": 4000 }
+  },
+  "excludePatterns": [
+    "**/*.md",
+    "**/*.txt",
+    "**/*.json",
+    "**/*.yaml",
+    "**/*.yml",
+    "**/node_modules/**",
+    "**/dist/**",
+    "**/build/**",
+    "**/.git/**",
+    "**/.next/**",
+    "**/.vscode/**",
+    "**/coverage/**"
+  ],
+  "fileTypes": {
+    "include": [
+      "**/*.js",
+      "**/*.ts",
+      "**/*.jsx",
+      "**/*.tsx",
+      "**/*.py",
+      "**/*.java",
+      "**/*.cpp",
+      "**/*.c",
+      "**/*.h",
+      "**/*.go",
+      "**/*.rs",
+      "**/*.php",
+      "**/*.rb",
+      "**/*.swift",
+      "**/*.kt",
+      "**/*.scala",
+      "**/*.m",
+      "**/*.sh"
+    ]
+  }
+}
