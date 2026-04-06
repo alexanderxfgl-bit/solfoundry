@@ -1,0 +1,33 @@
+name: 'Automatically Post Bounties to SolFoundry'
+
+on:
+  issues:
+    types: [opened, labeled, edited]
+  issue_comment:
+    types: [created]
+
+permissions:
+  issues: write
+  contents: read
+
+jobs:
+  bounty-poster:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        
+      - name: Post to SolFoundry
+        uses: ./.github/actions/post-to-solfoundry-bounties
+        with:
+          solfoundry-api-token: ${{ secrets.SOLFOUNDRY_API_TOKEN }}
+          bounty-labels: 'bounty,paid-bounty,issue-bounty'
+          reward-amount: '1000'
+          repository-scope: '*'
+        
+      - name: Bounty creation status
+        if: steps.bounty-poster.outputs.bounty-created == 'true'
+        run: |
+          echo "✅ Bounty created successfully!"
+          echo "Bounty ID: ${{ steps.bounty-poster.outputs.bounty-id }}"
+          echo "Bounty URL: ${{ steps.bounty-poster.outputs.bounty-url }}"
