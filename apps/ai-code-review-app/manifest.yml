@@ -1,0 +1,25 @@
+name: "SolFoundry AI Code Review"
+description: "Automated multi-LLM code review with security checks, performance analysis, and best practices for GitHub repositories"
+author: "SolFoundry"
+url: "https://solfoundry.org"
+hook-secret: "{{ secret }}"
+
+public: false
+default_events: ["pull_request"]
+default_permissions:
+  contents: "read"
+  pull_requests: "write"
+  issues: "write"
+
+events:
+  - event_name: pull_request
+    types: [opened, synchronize, edited]
+
+installations:
+  - repositories: "*"
+
+# Webhook configuration for handling PR events
+webhook_url: "https://solfoundry.org/api/github-app/webhook"
+webhook_secret: "{{ secret }}"
+
+# app_id and webhook_secret will be provided by GitHub during app creation
